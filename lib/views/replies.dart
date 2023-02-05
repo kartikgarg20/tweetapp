@@ -249,16 +249,36 @@ class _ReplyPageState extends State<ReplyPage> {
                 children: [
                   Row(
                     children: [
-                      Text(
-                        reply[index].user.name,
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16),
+                      Flexible(
+                        child: RichText(
+                          overflow: TextOverflow.ellipsis,
+                          strutStyle: StrutStyle(fontSize: 12.0),
+                          text: TextSpan(
+                            style: TextStyle(color: Colors.black),
+                            text: reply[index].user.name,
+                          ),
+                        ),
                       ),
+                      // Text(
+                      //   reply[index].user.name,
+                      //   style: TextStyle(
+                      //       fontWeight: FontWeight.bold, fontSize: 16),
+                      // ),
                       Icon(
                         Icons.verified,
                         color: Colors.blue,
                       ),
-                      Text('@${reply[index].user.username}'),
+                      Flexible(
+                        child: RichText(
+                          overflow: TextOverflow.ellipsis,
+                          strutStyle: StrutStyle(fontSize: 12.0),
+                          text: TextSpan(
+                            style: TextStyle(color: Colors.black),
+                            text: '@${reply[index].user.username}',
+                          ),
+                        ),
+                      ),
+                      // Text('@${reply[index].user.username}'),
                       Spacer(),
                       Icon(
                         Icons.more_horiz,
