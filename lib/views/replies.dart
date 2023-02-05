@@ -44,179 +44,171 @@ class _ReplyPageState extends State<ReplyPage> {
             : Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: SingleChildScrollView(
-                  child: Expanded(
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 20),
-                          child: Container(
-                            child: Text(
-                              Get.find<TweetsController>()
-                                  .tweetList
-                                  .value!
-                                  .results[widget.id]
-                                  .text,
-                              style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.w500),
-                            ),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 20),
+                        child: Container(
+                          child: Text(
+                            Get.find<TweetsController>()
+                                .tweetList
+                                .value!
+                                .results[widget.id]
+                                .text,
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.w500),
                           ),
                         ),
-                        Row(
-                          children: [
-                            Text('Time '),
-                            Text('Date '),
-                            Text('Veiws')
-                          ],
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Divider(
-                          color: Colors.black,
-                          thickness: 0.1,
-                        ),
-                        Row(
-                          children: [
-                            Text(
-                              Get.find<TweetsController>()
-                                  .tweetList
-                                  .value!
-                                  .results[widget.id]
-                                  .retweetCount
-                                  .toString(),
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 16),
+                      ),
+                      Row(
+                        children: [Text('Time '), Text('Date '), Text('Veiws')],
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Divider(
+                        color: Colors.black,
+                        thickness: 0.1,
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            Get.find<TweetsController>()
+                                .tweetList
+                                .value!
+                                .results[widget.id]
+                                .retweetCount
+                                .toString(),
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 16),
+                          ),
+                          Text(
+                            ' Retweets ',
+                            style: const TextStyle(
+                                color: Color.fromARGB(255, 125, 122, 122),
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16),
+                          ),
+                          SizedBox(
+                            width: 30,
+                          ),
+                          Text(
+                            '0',
+                            style: const TextStyle(fontWeight: FontWeight.w500),
+                          ),
+                          Text(
+                            ' Quote Tweets',
+                            style: const TextStyle(
+                                color: Color.fromARGB(255, 125, 122, 122),
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16),
+                          ),
+                          SizedBox(
+                            width: 30,
+                          ),
+                          Text(
+                            Get.find<TweetsController>()
+                                .tweetList
+                                .value!
+                                .results[widget.id]
+                                .favoriteCount
+                                .toString(),
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            ' Likes',
+                            style: const TextStyle(
+                                color: Color.fromARGB(255, 125, 122, 122),
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16),
+                          ),
+                        ],
+                      ),
+                      Divider(
+                        color: Colors.black,
+                        thickness: 0.1,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Icon(Icons.chat_bubble),
+                          SizedBox(
+                            width: 60,
+                          ),
+                          Icon(Icons.recycling),
+                          SizedBox(
+                            width: 60,
+                          ),
+                          Icon(Icons.heart_broken),
+                          SizedBox(
+                            width: 60,
+                          ),
+                          Icon(Icons.download),
+                        ],
+                      ),
+                      const Divider(
+                        color: Colors.black,
+                        thickness: 0.1,
+                      ),
+                      Row(
+                        children: [
+                          Container(
+                            width: 60,
+                            height: 60,
+                            decoration: const BoxDecoration(
+                              color: Colors.orange,
+                              shape: BoxShape.circle,
                             ),
-                            Text(
-                              ' Retweets ',
-                              style: const TextStyle(
-                                  color: Color.fromARGB(255, 125, 122, 122),
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 16),
-                            ),
-                            SizedBox(
-                              width: 30,
-                            ),
-                            Text(
-                              '0',
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.w500),
-                            ),
-                            Text(
-                              ' Quote Tweets',
-                              style: const TextStyle(
-                                  color: Color.fromARGB(255, 125, 122, 122),
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 16),
-                            ),
-                            SizedBox(
-                              width: 30,
-                            ),
-                            Text(
-                              Get.find<TweetsController>()
-                                  .tweetList
-                                  .value!
-                                  .results[widget.id]
-                                  .favoriteCount
-                                  .toString(),
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            Text(
-                              ' Likes',
-                              style: const TextStyle(
-                                  color: Color.fromARGB(255, 125, 122, 122),
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 16),
-                            ),
-                          ],
-                        ),
-                        Divider(
-                          color: Colors.black,
-                          thickness: 0.1,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Icon(Icons.chat_bubble),
-                            SizedBox(
-                              width: 60,
-                            ),
-                            Icon(Icons.recycling),
-                            SizedBox(
-                              width: 60,
-                            ),
-                            Icon(Icons.heart_broken),
-                            SizedBox(
-                              width: 60,
-                            ),
-                            Icon(Icons.download),
-                          ],
-                        ),
-                        const Divider(
-                          color: Colors.black,
-                          thickness: 0.1,
-                        ),
-                        Row(
-                          children: [
-                            Container(
-                              width: 60,
-                              height: 60,
-                              decoration: const BoxDecoration(
-                                color: Colors.orange,
-                                shape: BoxShape.circle,
+                          ),
+                          //           CircleAvatar(
+                          //   backgroundImage: NetworkImage(),
+                          //   radius: 24,
+                          // ),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          const Text(
+                            "Tweet your reply",
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 112, 112, 112),
+                                fontSize: 20),
+                          ),
+                          const Spacer(),
+                          Container(
+                            height: 35,
+                            width: 80,
+                            decoration: BoxDecoration(
+                                color: Colors.blue,
+                                borderRadius: BorderRadius.circular(20)),
+                            child: const Center(
+                              child: Text(
+                                'Reply',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold),
                               ),
                             ),
-                            //           CircleAvatar(
-                            //   backgroundImage: NetworkImage(),
-                            //   radius: 24,
-                            // ),
-                            const SizedBox(
-                              width: 20,
-                            ),
-                            const Text(
-                              "Tweet your reply",
-                              style: TextStyle(
-                                  color: Color.fromARGB(255, 112, 112, 112),
-                                  fontSize: 20),
-                            ),
-                            const Spacer(),
-                            Container(
-                              height: 35,
-                              width: 80,
-                              decoration: BoxDecoration(
-                                  color: Colors.blue,
-                                  borderRadius: BorderRadius.circular(20)),
-                              child: const Center(
-                                child: Text(
-                                  'Reply',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                        const Divider(
-                          color: Colors.black,
-                          thickness: 0.1,
-                        ),
-                        ListView.builder(
-                            physics: NeverScrollableScrollPhysics(),
-                            scrollDirection: Axis.vertical,
-                            shrinkWrap: true,
-                            itemCount: _replyController
-                                .replyList.value!.replies.length,
-                            itemBuilder: (BuildContext context, index) {
-                              var reply =
-                                  _replyController.replyList.value!.replies;
-                              return replyTile(index, reply);
-                            }),
-                      ],
-                    ),
+                          )
+                        ],
+                      ),
+                      const Divider(
+                        color: Colors.black,
+                        thickness: 0.1,
+                      ),
+                      ListView.builder(
+                          physics: NeverScrollableScrollPhysics(),
+                          scrollDirection: Axis.vertical,
+                          shrinkWrap: true,
+                          itemCount:
+                              _replyController.replyList.value!.replies.length,
+                          itemBuilder: (BuildContext context, index) {
+                            var reply =
+                                _replyController.replyList.value!.replies;
+                            return replyTile(index, reply);
+                          }),
+                    ],
                   ),
                 ),
               ),
