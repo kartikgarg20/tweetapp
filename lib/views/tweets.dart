@@ -100,6 +100,45 @@ class _TweetsState extends State<Tweets> {
           ],
         ),
       ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.home,
+              color: Colors.black,
+            ),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.search,
+              color: Colors.black,
+            ),
+            label: 'Search',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.people,
+              color: Colors.black,
+            ),
+            label: 'Friends',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.notifications,
+              color: Colors.black,
+            ),
+            label: 'Notifications',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.message,
+              color: Colors.black,
+            ),
+            label: 'messages',
+          ),
+        ],
+      ),
     );
   }
 
@@ -118,19 +157,28 @@ class _TweetsState extends State<Tweets> {
                 radius: 24,
               ),
               SizedBox(
-                width: 5,
+                width: 10,
               ),
               Expanded(
                 child: Column(
                   children: [
                     Row(
                       children: [
-                        Text(tweets[index].user.name),
+                        Text(
+                          tweets[index].user.name,
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 16),
+                        ),
                         Icon(
                           Icons.verified,
                           color: Colors.blue,
                         ),
-                        Text('@${tweets[index].user.username}')
+                        Text('@${tweets[index].user.username}'),
+                        Spacer(),
+                        Icon(
+                          Icons.more_horiz,
+                          color: Color.fromARGB(255, 63, 63, 63),
+                        ),
                       ],
                     ),
                     InkWell(
@@ -141,8 +189,33 @@ class _TweetsState extends State<Tweets> {
                         child: Text(tweets[index].text),
                       ),
                     ),
-                    SizedBox(
-                      height: 30,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: Row(
+                        children: [
+                          Icon(Icons.chat),
+                          Text(tweets[index].replyCount.toString()),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Icon(Icons.recycling),
+                          Text(tweets[index].retweetCount.toString()),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Icon(Icons.heart_broken),
+                          Text(tweets[index].favoriteCount.toString()),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Icon(Icons.download_outlined),
+                          Text('100'),
+                        ],
+                      ),
+                    ),
+                    Divider(
+                      color: Colors.black,
+                      thickness: 0.4,
                     )
                   ],
                 ),
