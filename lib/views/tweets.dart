@@ -1,19 +1,26 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:twitter_app/controllers/tweets_controller.dart';
 import 'package:twitter_app/views/replies.dart';
 
 class Tweets extends StatefulWidget {
-  Tweets({Key? key}) : super(key: key);
+  const Tweets({Key? key}) : super(key: key);
 
   @override
   State<Tweets> createState() => _TweetsState();
 }
 
-class _TweetsState extends State<Tweets> {
-  TweetsController _tweetsController = Get.put(TweetsController());
+class _TweetsState extends State<Tweets> with SingleTickerProviderStateMixin {
+  final TweetsController _tweetsController = Get.put(TweetsController());
+  TabController? _tabController;
+
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 4, vsync: this);
+    // quizcontroller.getQuesAns(Get.arguments);
+    // getAllQuiz();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,28 +82,66 @@ class _TweetsState extends State<Tweets> {
                 ),
               ),
             ),
+            TabBar(
+              unselectedLabelColor: Color.fromARGB(255, 121, 121, 121),
+              labelColor: Color.fromARGB(255, 0, 0, 0),
+              tabs: [
+                Tab(
+                  text: 'Tweets',
+                ),
+                Tab(
+                  text: 'Tweets & Replies',
+                ),
+                Tab(
+                  text: 'Media',
+                ),
+                Tab(
+                  text: 'Likes',
+                ),
+              ],
+              controller: _tabController,
+            ),
+            SizedBox(
+              height: 10,
+            ),
             Expanded(
-                child: Obx(
-              () => _tweetsController.isLoading.isTrue
-                  ? const Center(
-                      child: SizedBox(
-                        height: 50.0,
-                        width: 50.0,
-                        child: Center(
-                          child: CircularProgressIndicator(
-                            color: Color(0xFF000000),
-                          ),
-                        ),
-                      ),
-                    )
-                  : ListView.builder(
-                      itemCount:
-                          _tweetsController.tweetList.value!.results.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        var tweets = _tweetsController.tweetList.value!.results;
-                        return tweetTile(index, tweets);
-                      }),
-            ))
+              child: TabBarView(
+                controller: _tabController,
+                children: [
+                  Obx(
+                    () => _tweetsController.isLoading.isTrue
+                        ? const Center(
+                            child: SizedBox(
+                              height: 50.0,
+                              width: 50.0,
+                              child: Center(
+                                child: CircularProgressIndicator(
+                                  color: Color(0xFF000000),
+                                ),
+                              ),
+                            ),
+                          )
+                        : ListView.builder(
+                            itemCount: _tweetsController
+                                .tweetList.value!.results.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              var tweets =
+                                  _tweetsController.tweetList.value!.results;
+                              return tweetTile(index, tweets);
+                            }),
+                  ),
+                  Center(
+                    child: Text("No data for Tweets & replies"),
+                  ),
+                  Center(
+                    child: Text("No data for Media"),
+                  ),
+                  Center(
+                    child: Text("No data for Likes"),
+                  ),
+                ],
+              ),
+            )
           ],
         ),
       ),
